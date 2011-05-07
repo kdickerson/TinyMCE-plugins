@@ -1,0 +1,30 @@
+Filelink TinyMCE plugin.
+
+You initialize the plugin with a set of filenames and corresponding URLs.
+The user can then create a link to one of the files by clicking the button for this plugin, then clicking the file.
+
+I used this to allow users to upload files and then easily create links to the files they've uploaded in the editor.
+
+Example of initializing the plugin:
+
+Before initializing TinyMCE, create an array of the files you want available:
+<script type="text/javascript">
+  var available_files = [];
+  available_files.push({'name':'file1.txt', 'url':'url_for_this_file'});
+  available_files.push({'name':'file2.txt', 'url':'url_for_this_file'});
+  available_files.push({'name':'file3.txt', 'url':'url_for_this_file'});
+</script>
+
+I accomplish this by looping over my datastructure referencing these files on the server and
+  outputting one entry of available_files.push(...) for each file.
+
+Once the array is created we pass it to TinyMCE upon initialization so the plugin can see the data.
+Ignoring the normal setup, you'll need to make sure these pieces are correctly in place:
+  include the plugin, put the plugin's button in the toolbar, pass in the available files.
+<script type="text/javascript">
+  tinyMCE.init({
+        plugins: "filelink",
+        theme_advanced_buttons1: "filelink",
+        filelink_available_files:available_files,
+    });
+</script>

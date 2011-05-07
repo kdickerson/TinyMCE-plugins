@@ -1,0 +1,18 @@
+SimpleLineBreaks TinyMCE plugin.
+
+We discovered that users mostly didn't know that they could move to a new line without creating a new paragraph
+  by pressing CTRL + ENTER.  So this often resulted in long entries with lots of unnecessary whitespace.
+This plugin is simply to help clean that up.  The user, or a moderator, can select the many paragraphs of text and
+  click the SimpleLineBreaks button to convert the text into a single paragraph with linebreaks.
+It occasionally doesn't do quite what it's supposed to, but it works most of the time.
+
+Example of initializing the plugin:
+
+Ignoring the normal setup, you'll need to make sure these pieces are correctly in place:
+  include the plugin, put the plugin's button in the toolbar.
+<script type="text/javascript">
+  tinyMCE.init({
+        plugins: "simplelinebreaks",
+        theme_advanced_buttons1: "simplelinebreaks",
+    });
+</script>

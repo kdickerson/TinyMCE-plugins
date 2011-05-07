@@ -1,0 +1,30 @@
+ImageSelect TinyMCE plugin.
+
+You initialize the plugin with a set of source (img 'src' attribute) and corresponding raw HTML to display the image.
+The user can then include one of the images by clicking the button for this plugin, then clicking the image's thumbnail.
+
+I used this to allow users to upload images and then easily include those images in the editor.
+
+Example of initializing the plugin:
+
+Before initializing TinyMCE, create an array of the files you want available:
+<script type="text/javascript">
+  var available_images = [];
+  available_images.push({'src':'images/user1/img1.jpg', 'raw_html':'<img src="images/user1/img1.jpg" style="width:300px;height:160px;" />'});
+  available_images.push({'src':'images/user1/img2.jpg', 'raw_html':'<img src="images/user1/img2.jpg" style="width:37px;height:87px;" />'});
+  available_images.push({'src':'images/user1/img3.jpg', 'raw_html':'<img src="images/user1/img3.jpg" style="width:20px;height:40px;" />'});
+</script>
+
+I accomplish this by looping over my datastructure referencing these images on the server and
+  outputting one entry of available_images.push(...) for each image.
+
+Once the array is created we pass it to TinyMCE upon initialization so the plugin can see the data.
+Ignoring the normal setup, you'll need to make sure these pieces are correctly in place:
+  include the plugin, put the plugin's button in the toolbar, pass in the available images.
+<script type="text/javascript">
+  tinyMCE.init({
+        plugins: "imageselect",
+        theme_advanced_buttons1: "imageselect",
+        imageselect_available_images:available_images,
+    });
+</script>
